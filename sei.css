@@ -1,0 +1,73 @@
+html{
+    background-color: bisque;
+
+
+}
+h1{
+    
+    color:black;
+
+
+}
+
+.form {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+}
+
+.quadrado{
+    height: 200px;
+
+    width: 200px;
+    
+    border-radius: 10%;
+
+    border: 5px black;
+   
+    background-color: #3498db;
+
+    position: absolute;
+
+    top: 40%;
+
+    left: 40%;
+
+    
+
+}
+
+
+.botao input[type='submit']{
+   
+    height: 40px;
+
+    width: 40px;
+
+    border-radius: 10%;
+
+    background-color: blueviolet;
+
+}
+
+
+.input input{
+
+    background-color: beige;
+    transition: background-color 1s ease;
+    width: 30px;
+    height: 30px;
+    border-radius: 10%;
+
+}
+.input input:hover {
+
+    background-color: pink;
+
+}
