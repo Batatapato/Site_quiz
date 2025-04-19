@@ -19,35 +19,34 @@ if (isset($_GET['Quantidade_perguntas'])) {
     <input type="hidden" name="codquiz_fk" value="<?php echo $codquiz_fk; ?>">
     <input type="hidden" name="Quantidade_perguntas" value="<?php echo $Quantidade_perguntas; ?>">
 
-    <div id="respostasContainer">
         <input type="text" placeholder="Resposta" name="Resposta[]" required>
         <h3>O quanto essa resposta favorece a pergunta</h3>
-        <input type="radio" name="pontos_resposta[]">
+        <input type="radio" name="pontos_resposta0" value="1">
         <label for="1">&#128531 </label>
-        <input type="radio" name="pontos_resposta[]">
+        <input type="radio" name="pontos_resposta0" value="2">
         <label for="2">&#128517</label>
-        <input type="radio" name="pontos_resposta[]">
+        <input type="radio" name="pontos_resposta0" value="3">
         <label for="3">&#128512 </label>
-        <input type="radio" name="pontos_resposta[]">
+        <input type="radio" name="pontos_resposta0" value="4">
         <label for="4">&#128525 </label>
+    
 
-
-        <button type="button" onclick="adicionarResposta()">+ Adicionar outra resposta à pergunta</button><br>
-
-    </div>
-
+    <div id="respostasContainer">
     <input type="text" placeholder="Resposta " name="Resposta[]" required>
     <h3>O quanto essa resposta favorece a pergunta</h3>
-    <input type="radio" name="pontos_resposta[]">
+    <input type="radio" name="pontos_resposta1" value="1">
     <label for="1">&#128531 </label>
-    <input type="radio" name="pontos_resposta[]">
+    <input type="radio" name="pontos_resposta1" value="2">
     <label for="2">&#128517</label>
-    <input type="radio" name="pontos_resposta[]">
+    <input type="radio" name="pontos_resposta1" value="3">
     <label for="3">&#128512 </label>
-    <input type="radio" name="pontos_resposta[]">
+    <input type="radio" name="pontos_resposta1" value="4">
     <label for="4">&#128525 </label>
     <input type="submit" name="Ir" value="Criar Pergunta">
+    </div>
 </form>
+<br>
+<button type="button" onclick="adicionarResposta()">+ Adicionar outra resposta à pergunta</button><br>
 <script>
 
     const quantidade_perguntas = <?php echo $Quantidade_perguntas; ?>;
@@ -67,35 +66,36 @@ if (isset($_GET['Quantidade_perguntas'])) {
         adicionar_quantidade_perguntas();
     }
 
-
-
-</script>
-<script>
-    let quantidade_respostas = 1;
+    let quantidade_respostas = 2;
     const respostas_maximo = 6;
     function adicionarResposta() {
         if (quantidade_respostas < respostas_maximo) {
-            quantidade_respostas += 1;
+            
             const container = document.getElementById('respostasContainer');
 
             const novaResposta = document.createElement('div');
+            const Nome_radio = document.getElementsByName('pontos_resposta1');
+            let Novo_nome_radio = Nome_radio.replace('1', quantidade_respostas);
             novaResposta.classList.add('resposta');
             novaResposta.innerHTML = `
                 <input type="text" placeholder="Resposta" name="Resposta[]" required>
-                <input type = "radio" name="pontos_resposta[]">
+                <input type = "radio" name="`  quantidade_respostas  `" value="1">
                 <label for="1">&#128531 </label> 
-                <input type = "radio" name="pontos_resposta[]">
+                <input type = "radio" name="`  quantidade_respostas  `" value="2">
                 <label for="2">&#128517</label> 
-                <input type = "radio" name="pontos_resposta[]">
+                <input type = "radio" name="`  quantidade_respostas  `" value="3">
                 <label for="3">&#128512 </label> 
-                <input type = "radio" name="pontos_resposta[]">
+                <input type = "radio" name="`  quantidade_respostas  `" value="4">
                 <label for="4">&#128525 </label> 
                 <hr>
+                
             `;
-
+            quantidade_respostas += 1;
             container.appendChild(novaResposta);
         }
     }
+
+</script>
     <?php
     include("rodape.php");
     ?>

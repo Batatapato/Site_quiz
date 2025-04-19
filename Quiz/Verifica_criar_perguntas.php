@@ -14,14 +14,15 @@ $cod_pergunta_fk = mysqli_insert_id($conexao);
 
 
 $Respostas = $_POST['Resposta'];
-$Favorecimentos = $_POST['pontos_resposta'];
+
 
 
 
 for ($i = 0; $i < count($Respostas); $i++) {
 
     $resposta = $Respostas[$i];
-    $favorecimento = $Favorecimentos[$i];
+    $favorecimento = $_POST['pontos_resposta'. $i];
+    $favorecimento = intval($favorecimento);
     $sql = "INSERT INTO RESPOSTAS_PERSONALIDADE(textoresposta,pontosresposta,codpergunta_fk) VALUES ('$resposta','$favorecimento','$cod_pergunta_fk')";
 
     mysqli_query($conexao,$sql);
