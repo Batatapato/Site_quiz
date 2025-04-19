@@ -1,31 +1,25 @@
 <?php
 
- include("conexao.php");
+include("conexao.php");
 
-    $nomequiz = $_POST['nomequiz'];
-    $tipoquiz = $_POST["tipoQuiz"];
-    $fotoBinaria = addslashes(file_get_contents($_FILES['imagem']['tmp_name']));
+$nomequiz = $_POST['nomequiz'];
+$tipoquiz = $_POST['tipoQuiz'];
+$foto_upload = $_FILES['imagem'];
 
-        
-        if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === 0) {
-            $fotoBinaria = addslashes(file_get_contents($_FILES['imagem']['tmp_name']));
-            
-    
-            $sql = "Insert into quizes(nomequiz,tipoquiz,fotoquiz) values('$nomequiz', '$tipoquiz', '$fotoBinaria')";
-        } else {
-            echo "Erro: Nenhuma imagem foi enviada ou ocorreu um erro no upload.";
-        }
-        
-        
-        
-        if(mysqli_query($conexao, $sql)){ 
-        $codquiz = mysqli_insert_id($conexao);
-        header("Location: Criar_resultados.php?codquiz=" . $codquiz);
-        }
-        else{
-       header("Location:index.php");
-    }
-       
-        
+$pasta = 'Uploads/';
+$nomeImagem = uniqid() . "_" . $nomequiz . $foto_upload['name'];
+$caminho_da_imagem = $pasta . $nomeImagem;
+move_uploaded_file($foto_upload['tmp_name'], $caminho_da_imagem);
+
+$sql = "Insert into quizes(nomequiz,tipoquiz,foto_quiz) values('$nomequiz', '$tipoquiz', '$caminho_da_imagem')";
+
+if (mysqli_query($conexao, $sql)) {
+    $codquiz = mysqli_insert_id($conexao);
+    header("Location: Criar_resultados.php?codquiz=" . $codquiz);
+} else {
+    header("Location:index.php");
+}
+
+
 
 ?>

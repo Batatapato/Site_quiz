@@ -4,12 +4,13 @@ CREATE TABLE quizes (
     codquiz INT AUTO_INCREMENT PRIMARY KEY,
     nomequiz VARCHAR(80) NOT NULL,
     tipoquiz VARCHAR(80) NOT NULL,
-    fotoquiz longblob NOT NULL
+    foto_quiz varchar(255) NOT NULL
 );
 
 CREATE TABLE perguntas (
     codpergunta INT AUTO_INCREMENT PRIMARY KEY,
     textopergunta VARCHAR(255) NOT NULL,
+    FOTO_PERGUNTA VARCHAR(255),
     codquiz_fk INT NOT NULL,
     FOREIGN KEY (codquiz_fk) REFERENCES quizes(codquiz)
 );
@@ -33,7 +34,7 @@ Create TABLE resultados(
     codresultado INT AUTO_INCREMENT PRIMARY KEY,
     titulo_resultado VARCHAR(80) NOT NULL,
     descricao_resultado VARCHAR(255) NOT NULL,
-    foto_resultado longblob,
+    foto_resultado VARCHAR(255) NOT NULL,
     codquiz_fk INT NOT NULL,
     pontuacao_necessaria int not null,
     FOREIGN KEY (codquiz_fk) REFERENCES quizes(codquiz)

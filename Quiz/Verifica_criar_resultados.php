@@ -1,33 +1,32 @@
 <?php
 include('conexao.php');
 
-// Corrigido: agora pega via POST
-if (!isset($_POST['codquiz_fk'])) {
-    die("Erro: codquiz_fk não recebido.");
-}
-
 $codquiz_fk = $_POST['codquiz_fk'];
 
-// Verifica se os campos existem
+
+
 if (isset($_POST['Titulo_resultado'], $_POST['Descricao_resultado'])) {
-    
+
     $titulos = $_POST['Titulo_resultado'];
     $descricoes = $_POST['Descricao_resultado'];
-    $temArquivos = isset($_FILES['imagem']) && is_array($_FILES['imagem']['name']);
+    $FotoArquivos = $_FILES['imagem'];
+
+    $pasta='Uploads/';
+   
 
     for ($i = 0; $i < count($titulos); $i++) {
         $titulo = $titulos[$i];
         $descricao = $descricoes[$i];
-        $fotoBinaria = null;
 
-        if ($temArquivos && $_FILES['imagem']['error'][$i] === UPLOAD_ERR_OK) {
-            $fotoTmp = $_FILES['imagem']['tmp_name'][$i];
-            $fotoBinaria = file_get_contents($fotoTmp);
-        }
+        $caminho_foto = null;
+        $nomeImagem = uniqid() . "_" . $codquiz_fk . $FotoArquivos['name'][$i];
+        $caminho_da_imagem = $pasta . $nomeImagem;  
+        move_uploaded_file($FotoArquivos['tmp_name'][$i], $caminho_da_imagem);
 
-        $stmt = $conexao->prepare("INSERT INTO resultados (titulo_resultado, descricao_resultado, foto_resultado, codquiz_fk) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("sssi", $titulo, $descricao, $fotoBinaria, $codquiz_fk);
-        $stmt->execute();
+
+
+        $sql = "INSERT INTO resultados(titulo_resultado, descricao_resultado, foto_resultado, codquiz_fk) VALUES ('$titulo', '$descricao', '$caminho_da_imagem', '$codquiz_fk');";
+        mysqli_query($conexao, $sql);
     }
 
     echo "Resultados inseridos com sucesso!";

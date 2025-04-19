@@ -13,7 +13,7 @@ while ($linha = mysqli_fetch_assoc($resp)) {
 ?>
     <div class="quiz-card">
         <a href="fazer_quiz.php?codquiz=<?php echo $linha['codquiz']; ?>">
-            <img src="data:image/jpeg;base64,<?php echo base64_encode($linha['fotoquiz']); ?>" >
+        <img src="<?php echo $linha['foto_quiz']; ?>" alt="Imagem do resultado">
             <h3><?php echo htmlspecialchars($linha['nomequiz']); ?></h3>
         </a>
     </div>

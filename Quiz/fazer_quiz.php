@@ -15,7 +15,7 @@ $resultado_perguntas = mysqli_query($conexao,$sql_perguntas);
 ?>
 
 <div class="quiz-detalhe">
-    <img class="quiz-imagem" src="data:image/jpeg;base64,<?php echo base64_encode($linha2['fotoquiz']); ?>" alt="Imagem do Quiz">
+<img src="<?php echo $linha2['foto_quiz']; ?>" alt="Imagem do resultado">
     <h1 class="quiz-titulo"><?php echo htmlspecialchars($linha2['nomequiz']); ?></h1>
 </div>
 <?php
