@@ -7,7 +7,14 @@ $codquiz = $_POST['codquiz_fk'];
 }
 $Quantidade_perguntas = $_POST['Quantidade_perguntas'];
 $textoPergunta = $_POST['pergunta'];
-$sql_pergunta = "INSERT INTO perguntas(textopergunta, codquiz_fk) VALUES ('$textoPergunta', '$codquiz')";
+$FotoArquivos = $_FILES['imagem'];
+
+    $pasta='Uploads/';
+    $nomeImagem = uniqid() . "_" ."a". $FotoArquivos['name'];
+    $caminho_da_imagem = $pasta . $nomeImagem;  
+    move_uploaded_file($FotoArquivos['tmp_name'], $caminho_da_imagem);
+
+$sql_pergunta = "INSERT INTO perguntas(textopergunta,foto_pergunta ,codquiz_fk) VALUES ('$textoPergunta','$caminho_da_imagem', '$codquiz')";
 $resultado = mysqli_query($conexao,$sql_pergunta);
 
 $cod_pergunta_fk = mysqli_insert_id($conexao);

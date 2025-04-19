@@ -13,36 +13,37 @@ if (isset($_GET['Quantidade_perguntas'])) {
 
 </div>
 
-<form action="Verifica_criar_perguntas.php" method="POST">
+<form action="Verifica_criar_perguntas.php" method="POST"  enctype="multipart/form-data">
 
     <input type="text" placeholder="Pergunta" name="pergunta" required>
+    <input type="file" name="imagem" accept="image/*" required>
     <input type="hidden" name="codquiz_fk" value="<?php echo $codquiz_fk; ?>">
     <input type="hidden" name="Quantidade_perguntas" value="<?php echo $Quantidade_perguntas; ?>">
 
-        <input type="text" placeholder="Resposta" name="Resposta[]" required>
-        <h3>O quanto essa resposta favorece a pergunta</h3>
-        <input type="radio" name="pontos_resposta0" value="1">
-        <label for="1">&#128531 </label>
-        <input type="radio" name="pontos_resposta0" value="2">
-        <label for="2">&#128517</label>
-        <input type="radio" name="pontos_resposta0" value="3">
-        <label for="3">&#128512 </label>
-        <input type="radio" name="pontos_resposta0" value="4">
-        <label for="4">&#128525 </label>
-    
+    <input type="text" placeholder="Resposta" name="Resposta[]" required>
+    <h3>O quanto essa resposta favorece a pergunta</h3>
+    <input type="radio" name="pontos_resposta0" value="1">
+    <label for="1">&#128531 </label>
+    <input type="radio" name="pontos_resposta0" value="2">
+    <label for="2">&#128517</label>
+    <input type="radio" name="pontos_resposta0" value="3">
+    <label for="3">&#128512 </label>
+    <input type="radio" name="pontos_resposta0" value="4">
+    <label for="4">&#128525 </label>
+
 
     <div id="respostasContainer">
-    <input type="text" placeholder="Resposta " name="Resposta[]" required>
-    <h3>O quanto essa resposta favorece a pergunta</h3>
-    <input type="radio" name="pontos_resposta1" value="1">
-    <label for="1">&#128531 </label>
-    <input type="radio" name="pontos_resposta1" value="2">
-    <label for="2">&#128517</label>
-    <input type="radio" name="pontos_resposta1" value="3">
-    <label for="3">&#128512 </label>
-    <input type="radio" name="pontos_resposta1" value="4">
-    <label for="4">&#128525 </label>
-    <input type="submit" name="Ir" value="Criar Pergunta">
+        <input type="text" placeholder="Resposta " name="Resposta[]" required>
+        <h3>O quanto essa resposta favorece a pergunta</h3>
+        <input type="radio" name="pontos_resposta1" value="1">
+        <label for="1">&#128531 </label>
+        <input type="radio" name="pontos_resposta1" value="2">
+        <label for="2">&#128517</label>
+        <input type="radio" name="pontos_resposta1" value="3">
+        <label for="3">&#128512 </label>
+        <input type="radio" name="pontos_resposta1" value="4">
+        <label for="4">&#128525 </label>
+        <input type="submit" name="Ir" value="Criar Pergunta">
     </div>
 </form>
 <br>
@@ -68,34 +69,36 @@ if (isset($_GET['Quantidade_perguntas'])) {
 
     let quantidade_respostas = 2;
     const respostas_maximo = 6;
+
     function adicionarResposta() {
         if (quantidade_respostas < respostas_maximo) {
-            
             const container = document.getElementById('respostasContainer');
 
             const novaResposta = document.createElement('div');
-            const Nome_radio = document.getElementsByName('pontos_resposta1');
-            let Novo_nome_radio = Nome_radio.replace('1', quantidade_respostas);
             novaResposta.classList.add('resposta');
+
+            
             novaResposta.innerHTML = `
-                <input type="text" placeholder="Resposta" name="Resposta[]" required>
-                <input type = "radio" name="`  quantidade_respostas  `" value="1">
-                <label for="1">&#128531 </label> 
-                <input type = "radio" name="`  quantidade_respostas  `" value="2">
-                <label for="2">&#128517</label> 
-                <input type = "radio" name="`  quantidade_respostas  `" value="3">
-                <label for="3">&#128512 </label> 
-                <input type = "radio" name="`  quantidade_respostas  `" value="4">
-                <label for="4">&#128525 </label> 
-                <hr>
-                
-            `;
-            quantidade_respostas += 1;
+            <input type="text" placeholder="Resposta" name="Resposta[]" required>
+            <h3>O quanto essa resposta favorece a pergunta</h3>
+            <input type="radio" name="pontos_resposta${quantidade_respostas}" value="1">
+            <label for="1">&#128531</label>
+            <input type="radio" name="pontos_resposta${quantidade_respostas}" value="2">
+            <label for="2">&#128517</label>
+            <input type="radio" name="pontos_resposta${quantidade_respostas}" value="3">
+            <label for="3">&#128512</label>
+            <input type="radio" name="pontos_resposta${quantidade_respostas}" value="4">
+            <label for="4">&#128525</label>
+            <hr>
+        `;
+
             container.appendChild(novaResposta);
+            quantidade_respostas++;
         }
     }
 
+
 </script>
-    <?php
-    include("rodape.php");
-    ?>
+<?php
+include("rodape.php");
+?>
