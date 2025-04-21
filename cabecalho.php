@@ -10,11 +10,11 @@
   <title>Login</title>
 </head>
 
-<body>
+<body class="bg-body-secondary">
 <nav class="nav nav-pills flex-column flex-sm-row">
-  <a class="flex-sm-fill text-sm-center nav-link" href="index.php">Inicio</a>
-  <a class="flex-sm-fill text-sm-center nav-link" href="Time/Times.php">Times</a>
-  <a class="flex-sm-fill text-sm-center nav-link" href="principal.php">Lista de Cadastros</a>
-  <a class="flex-sm-fill text-sm-center nav-link" href="login.php">Entrar</a>
-  <a class="flex-sm-fill text-sm-center nav-link" href="Quiz/index.php">QUIZ</a>
+  <a class="flex-sm-fill text-sm-center nav-link border-end border-primary" href="index.php">Inicio</a>
+  <a class="flex-sm-fill text-sm-center nav-link border-end border-primary" href="Time/Times.php">Times</a>
+  <a class="flex-sm-fill text-sm-center nav-link border-end border-primary" href="principal.php">Lista de Cadastros</a>
+  <a class="flex-sm-fill text-sm-center nav-link border-end border-primary" href="login.php">Entrar</a>
+  <a class="flex-sm-fill text-sm-center nav-link border-end border-primary" href="Quiz/index.php">QUIZ</a>
 </nav>
